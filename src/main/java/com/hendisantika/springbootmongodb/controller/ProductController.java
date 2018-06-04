@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Optional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -34,7 +33,7 @@ public class ProductController {
         return productRepository.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/products")
+    @PostMapping("/products")
     public String save(@RequestBody Product product) {
         productRepository.save(product);
 
@@ -42,13 +41,13 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public Optional<Product> show(@PathVariable String id) {
-        return productRepository.findById(id);
+    public Product show(@PathVariable String id) {
+        return productRepository.findOne(id);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/products/{id}")
-    public Optional<Product> update(@PathVariable String id, @RequestBody Product product) {
-        Optional<Product> prod = productRepository.findById(id);
+    public Product update(@PathVariable String id, @RequestBody Product product) {
+        Product prod = productRepository.findOne(id);
         if (product.getProdName() != null)
             prod.setProdName(product.getProdName());
         if (product.getProdDesc() != null)
