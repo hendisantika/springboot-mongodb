@@ -1,0 +1,43 @@
+### Add New Product
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "id": "PROD-002",
+  "prodName": "Buku Sinar Dunia",
+  "prodDesc": "Buku Sinar Dunia",
+  "prodPrice": 2500,
+  "prodImage": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Intel_Core_i7_Logo_2020.png"
+}
+
+### Get All Products
+GET http://localhost:8080/products
+Content-Type: application/json
+
+### Find Product By ID
+GET http://localhost:8080/products/PROD-001
+Content-Type: application/json
+
+{
+  "id": "",
+  "prodName": "",
+  "prodDesc": "",
+  "prodPrice": 0,
+  "prodImage": ""
+}
+
+### Update Product
+PUT http://localhost:8080/products/PROD-001
+Content-Type: application/json
+
+{
+  "id": "PROD-001",
+  "prodName": "Buku Sinar Dunia Akhirat",
+  "prodDesc": "Buku Sinar Dunia Akhirat",
+  "prodPrice": 2500,
+  "prodImage": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Intel_Core_i7_Logo_2020.png"
+}
+
+### Delete a Product
+DELETE http://localhost:8080/products/PROD-002
+Content-Type: application/json
