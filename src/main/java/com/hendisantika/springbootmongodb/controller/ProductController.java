@@ -2,8 +2,14 @@ package com.hendisantika.springbootmongodb.controller;
 
 import com.hendisantika.springbootmongodb.domain.Product;
 import com.hendisantika.springbootmongodb.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
@@ -18,10 +24,10 @@ import java.util.Optional;
  * To change this template use File | Settings | File Templates.
  */
 @RestController
+@RequiredArgsConstructor
 public class ProductController {
 
-    @Autowired
-    ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     @GetMapping("/products")
     public Iterable<Product> product() {
@@ -40,7 +46,7 @@ public class ProductController {
         return productRepository.findById(id);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/products/{id}")
+    @PutMapping(value = "/products/{id}")
     public Product update(@PathVariable String id, @RequestBody Product product) {
         Optional<Product> prodOpt = productRepository.findById(id);
         Product prod = prodOpt.get();
